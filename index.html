@@ -23,7 +23,44 @@
   .card { background: #fff; border: 1px solid #b8c4d0; border-radius: 10px; padding: 16px 18px; margin: 16px 0; }
   .note { background: #fff8e1; border: 1px solid #c9ac3c; border-radius: 8px; padding: 12px 16px; margin: 14px 0; }
   .point { background: #e8f2fc; border: 1px solid #5f93c4; border-radius: 8px; padding: 12px 16px; margin: 14px 0; }
-  .word { color: #1a3a6b; font-weight: bold; }
+  .word { color: #C62828; font-weight: bold; }
+  strong, b { color: #C62828; }
+  h2 strong, h2 b, th strong, th b, header.hero strong { color: inherit; }
+  figure.fig { margin: 22px 0; padding: 14px 12px; background: #f7fafd; border: 2px solid #5f93c4; border-radius: 10px; }
+  .fig-title { font-weight: bold; font-size: 1rem; line-height: 1.5; margin-bottom: 10px; color: #1a3a6b; }
+  figure.fig figcaption { margin-top: 10px; font-size: 1rem; line-height: 1.6; }
+  .box { border-radius: 8px; padding: 8px 12px; line-height: 1.5; text-align: center; border: 2px solid #1a3a6b; background: #fff; color: #111; }
+  .box.blue { background: #2e6db4; border-color: #1a3a6b; color: #fff; }
+  .box.red { background: #C62828; border-color: #8e1b1b; color: #fff; font-weight: bold; }
+  .box.gray { background: #e3ecf5; }
+  .arrow { text-align: center; font-size: 1.2rem; line-height: 1.3; color: #1a3a6b; }
+  .stack .box { margin: 0; border-radius: 0; }
+  .stack .box + .box { border-top: none; }
+  .stack .box:first-child { border-radius: 8px 8px 0 0; }
+  .stack .box:last-child { border-radius: 0 0 8px 8px; }
+  .tl { list-style: none; margin: 0; padding: 0; }
+  .tl li { position: relative; margin: 0; padding: 0 0 14px 34px; line-height: 1.5; }
+  .tl li::before { content: ""; position: absolute; left: 8px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #2e6db4; border: 2px solid #1a3a6b; }
+  .tl li::after { content: ""; position: absolute; left: 14px; top: 24px; bottom: -2px; width: 4px; background: #8fa3b8; }
+  .tl li:last-child { padding-bottom: 0; }
+  .tl li:last-child::after { display: none; }
+  .tl li.last::before { background: #C62828; border-color: #8e1b1b; }
+  .tl .date { font-weight: bold; color: #C62828; display: block; }
+  .branch { display: flex; flex-direction: column; gap: 8px; }
+  .bar-group { margin: 0 0 14px; }
+  .bar-group:last-child { margin-bottom: 0; }
+  .bar-title { font-weight: bold; line-height: 1.5; margin-bottom: 4px; }
+  .bar-title span { color: #C62828; }
+  .bar-row { display: flex; align-items: center; gap: 6px; margin: 4px 0; }
+  .bar-label { flex: 0 0 4.4em; line-height: 1.3; }
+  .bar-area { flex: 1; min-width: 0; }
+  .bar { border-radius: 6px; padding: 4px 8px; line-height: 1.4; color: #fff; font-weight: bold; white-space: nowrap; }
+  .bar.before { background: #4a6580; }
+  .bar.after { background: #C62828; }
+  .steps { list-style: none; margin: 0; padding: 0; }
+  .steps li { display: flex; align-items: flex-start; gap: 10px; margin: 0; padding: 8px 10px; background: #fff; border: 2px solid #2e6db4; border-radius: 8px; line-height: 1.5; }
+  .steps li .n { flex: 0 0 auto; width: 2em; height: 2em; border-radius: 50%; background: #1a3a6b; color: #fff; text-align: center; line-height: 2em; font-weight: bold; }
+  .steps .arrow { margin: 2px 0; }
   footer { margin-top: 50px; color: #333; }
   @media (max-width: 600px) { header.hero h1 { font-size: 1.3rem; } th, td { padding: 6px 5px; } }
 </style>
@@ -46,6 +83,16 @@
     <li>さらに、関税処理手数料として、<strong>合計額の2.1%</strong>がかかります。</li>
   </ul>
 
+  <figure class="fig">
+    <div class="fig-title">図A　荷物1つ（商品1種類）あたりにかかるもの</div>
+    <div class="stack">
+      <div class="box gray">定額の関税<br>3ユーロ（555円）</div>
+      <div class="box red">新しく増える<br>取扱手数料 2ユーロ（370円）</div>
+      <div class="box gray">関税処理手数料<br>合計の2.1%</div>
+    </div>
+    <figcaption>これらが積み重なります。赤い部分が、11月1日から新しく増えます。（図の高さは目安です）</figcaption>
+  </figure>
+
   <h3>SpeedPAKで適用が始まる日</h3>
   <p>CPaSS（配送の注文を作る画面）で、注文を作った日で決まります。</p>
   <ul>
@@ -53,12 +100,35 @@
     <li>SpeedPAK via DHL／FedEx：<strong>2026年10月27日0時（日本時間）以降</strong>の注文から</li>
   </ul>
 
+  <figure class="fig">
+    <div class="fig-title">図B　いつから？</div>
+    <ul class="tl">
+      <li><span class="date">10月23日</span>SpeedPAK Economy の注文から</li>
+      <li><span class="date">10月27日</span>DHL／FedEx の注文から</li>
+      <li class="last"><span class="date">11月1日</span>EU で手数料が始まる</li>
+    </ul>
+    <figcaption>上から下へ、日付の順に並べています。</figcaption>
+  </figure>
+
   <h3>だれが払うのか</h3>
   <ul>
     <li><span class="word">DDP</span>（関税込みで送る方法）：<strong>出品者（私たち）</strong>が払います。</li>
     <li>申告価格が150ユーロを超える荷物を<span class="word">DDU</span>（関税抜きで送る方法。DHL・FedExだけ選べます）で送ると、<strong>買い手</strong>が払います。</li>
     <li>SpeedPAK Economy は、150ユーロ以下の荷物しか送れません。送り方は DDP だけです。</li>
   </ul>
+
+  <figure class="fig">
+    <div class="fig-title">図C　だれが払う？</div>
+    <div class="branch">
+      <div class="box">申告価格は？</div>
+      <div class="arrow">▼ 150ユーロ以下</div>
+      <div class="box">関税込み（DDP）だけ<div class="arrow">▼</div><div class="box red">私たち（出品者）が払う</div></div>
+      <div class="arrow">▼ 150ユーロ超（DHL・FedEx）</div>
+      <div class="box">関税込み（DDP）なら<div class="arrow">▼</div><div class="box red">私たち（出品者）が払う</div></div>
+      <div class="box">関税抜き（DDU）なら<div class="arrow">▼</div><div class="box blue">買い手が払う</div></div>
+    </div>
+    <figcaption>金額の大きさと送り方で、払う人が変わります。</figcaption>
+  </figure>
 
   <div class="note">
     <strong>返金されません。</strong>発送後に払った取扱手数料は、配達できなかった場合、返送された場合、届かなかった場合でも、返金されません。
@@ -79,6 +149,25 @@
 <h2>3. 変更したシッピングポリシー（2026年10月17日）</h2>
 <div class="card">
   <p>ヨーロッパ（Europe）とフランス（FR）向けの追加送料を、すべて<strong>+3ドル</strong>しました。</p>
+  <figure class="fig">
+    <div class="fig-title">図D　送料の変わり方（ヨーロッパ）</div>
+      <div class="bar-group">
+        <div class="bar-title">eco_used　<span>+3ドル</span></div>
+        <div class="bar-row"><div class="bar-label">変更前</div><div class="bar-area"><div class="bar before" style="width:62.5%">$10</div></div></div>
+        <div class="bar-row"><div class="bar-label">変更後</div><div class="bar-area"><div class="bar after" style="width:81.2%">$13</div></div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-title">game_used　<span>+3ドル</span></div>
+        <div class="bar-row"><div class="bar-label">変更前</div><div class="bar-area"><div class="bar before" style="width:81.2%">$13</div></div></div>
+        <div class="bar-row"><div class="bar-label">変更後</div><div class="bar-area"><div class="bar after" style="width:100.0%">$16</div></div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-title">xp_used の安い価格帯　<span>+3ドル</span></div>
+        <div class="bar-row"><div class="bar-label">変更前</div><div class="bar-area"><div class="bar before" style="width:25.0%">$4</div></div></div>
+        <div class="bar-row"><div class="bar-label">変更後</div><div class="bar-area"><div class="bar after" style="width:43.8%">$7</div></div></div>
+      </div>
+    <figcaption>棒が長いほど、送料が高いことを表します。どれも3ドル高くなりました。</figcaption>
+  </figure>
   <table>
     <tr><th>ポリシーの種類</th><th>ヨーロッパ<br>変更前→変更後</th><th>フランス<br>変更前→変更後</th></tr>
     <tr><td>eco_used<br>（中古・エコノミー）</td><td>$10 → $13</td><td>$13 → $16</td></tr>
@@ -99,6 +188,20 @@
 
 <h2>5. 皆さんがすること</h2>
 <div class="card">
+
+  <figure class="fig">
+    <div class="fig-title">図E　皆さんがすること</div>
+    <ul class="steps">
+      <li><span class="n">①</span><span>EAGLEで「同期」ボタンを押す</span></li>
+      <li class="arrow" style="display:block;background:none;border:none;padding:0">▼</li>
+      <li><span class="n">②</span><span>2時間〜半日待つ</span></li>
+      <li class="arrow" style="display:block;background:none;border:none;padding:0">▼</li>
+      <li><span class="n">③</span><span>送料が「変更後」になったか確かめる</span></li>
+      <li class="arrow" style="display:block;background:none;border:none;padding:0">▼</li>
+      <li><span class="n">④</span><span>すぐ反映させたい出品は Revise</span></li>
+    </ul>
+    <figcaption>①から④へ、上から順に進めます。</figcaption>
+  </figure>
   <ol>
     <li>EAGLE で<strong>「同期」ボタンを押してください</strong>（準備ができたらお知らせします）。同期はアカウントごとに必要です。押してから反映されるまで、早くて2時間、遅いと半日ほどかかります。</li>
     <li>反映されたら、自分のポリシーのヨーロッパとフランスの送料が、上の表の「変更後」になっているか確かめてください。</li>
